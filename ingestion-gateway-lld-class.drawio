@@ -1,0 +1,382 @@
+<mxfile host="Electron">
+  <diagram name="vzone-ingestion-gateway LLD" id="UpRG3ojYcAdPqfX5I55E">
+    <mxGraphModel dx="3986" dy="2471" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3520" pageHeight="2120" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;fontSize=26;fontStyle=1;align=left;verticalAlign=middle;" value="vzone-ingestion-gateway  —  Low-Level Design (UML Class Diagram)" vertex="1">
+          <mxGeometry height="40" width="960" x="40" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" parent="1" style="swimlane;startSize=26;fontStyle=1;html=1;fillColor=#ffffff;strokeColor=#666666;align=center;verticalAlign=top;fontSize=14;" value="Legend" vertex="1">
+          <mxGeometry height="326" width="920" x="30" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="lg1" parent="legend" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="«interface» Port" vertex="1">
+          <mxGeometry height="36" width="200" x="20" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="lg2" parent="legend" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="«factory» Implementation" vertex="1">
+          <mxGeometry height="36" width="220" x="250" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="lg3" parent="legend" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="DTO / Config" vertex="1">
+          <mxGeometry height="36" width="180" x="500" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="lg4" parent="legend" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="«type» Enum" vertex="1">
+          <mxGeometry height="36" width="180" x="710" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="lg5" parent="legend" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;" value="«external» Library" vertex="1">
+          <mxGeometry height="36" width="200" x="20" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="lg6" parent="legend" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="Composition Root" vertex="1">
+          <mxGeometry height="36" width="220" x="250" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="lg7" parent="legend" style="text;html=1;align=left;fontSize=13;verticalAlign=middle;" value="△———  generalization  (B extends A)" vertex="1">
+          <mxGeometry height="24" width="430" x="20" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="lg8" parent="legend" style="text;html=1;align=left;fontSize=13;verticalAlign=middle;" value="△- - - -  realization  (factory returns / implements port)" vertex="1">
+          <mxGeometry height="24" width="600" x="20" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="lg9" parent="legend" style="text;html=1;align=left;fontSize=13;verticalAlign=middle;" value="→- - - -  dependency  (uses / creates / returns)" vertex="1">
+          <mxGeometry height="24" width="600" x="20" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="lg10" parent="legend" style="text;html=1;align=left;fontSize=13;verticalAlign=middle;" value="Visibility:    +  public        –  private (module-local closure)" vertex="1">
+          <mxGeometry height="24" width="700" x="20" y="252" as="geometry" />
+        </mxCell>
+        <mxCell id="hdr_root" parent="1" style="text;html=1;fontSize=15;fontStyle=1;fontColor=#b46504;align=center;" value="COMPOSITION ROOT  ·  src/index.ts" vertex="1">
+          <mxGeometry height="24" width="620" x="1040" y="126" as="geometry" />
+        </mxCell>
+        <mxCell id="hdr_ports" parent="1" style="text;html=1;fontSize=15;fontStyle=1;fontColor=#6c3483;align=left;" value="PORTS  ·  INTERFACES  (src/types.ts, *.ts)" vertex="1">
+          <mxGeometry height="24" width="700" x="40" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="hdr_impl" parent="1" style="text;html=1;fontSize=15;fontStyle=1;fontColor=#1f4e79;align=left;" value="FACTORY IMPLEMENTATIONS  (one factory per port + the connection handler hub)" vertex="1">
+          <mxGeometry height="24" width="600" x="40" y="1002" as="geometry" />
+        </mxCell>
+        <mxCell id="hdr_bottom" parent="1" style="text;html=1;fontSize=15;fontStyle=1;fontColor=#386641;align=center;" value="DATA CONTRACTS (DTOs / Config / Enum) &lt;br&gt;&amp;nbsp;&amp;amp;   EXTERNAL DEPENDENCIES" vertex="1">
+          <mxGeometry height="24" width="291" x="303.5" y="1459" as="geometry" />
+        </mxCell>
+        <mxCell id="c_index" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=44;html=1;collapsible=0;fillColor=#ffe6cc;strokeColor=#d79b00;swimlaneFillColor=#ffffff;" value="«composition root»&#xa;index.ts" vertex="1">
+          <mxGeometry height="300" width="620" x="1040" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="c_index_a" parent="c_index" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=2;overflow=hidden;" value="- logger: Logger&#xa;- useKafka: boolean&#xa;- deviceAuth?: DeviceAuthService&#xa;- instantiates new Redis(ioredis) + new pg.Pool" vertex="1">
+          <mxGeometry height="86" width="620" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="c_index_l" parent="c_index" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];" value="" vertex="1">
+          <mxGeometry height="8" width="620" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="c_index_m" parent="c_index" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=2;overflow=hidden;" value="- main(): Promise&lt;void&gt;&#xa;- requireEnv(name): string&#xa;- parsePort(value): number&#xa;- shutdown(signal): Promise&lt;void&gt;   (SIGTERM / SIGINT)&#xa;- createLogProducer(): MessageProducer   (LOG_ONLY fallback)" vertex="1">
+          <mxGeometry height="100" width="620" y="138" as="geometry" />
+        </mxCell>
+        <mxCell id="i_logger" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=44;html=1;collapsible=0;fillColor=#e1d5e7;strokeColor=#9673a6;swimlaneFillColor=#ffffff;" value="«interface»&#xa;Logger" vertex="1">
+          <mxGeometry height="82" width="380" x="40" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="i_logger_m" parent="i_logger" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ log(message: string): void" vertex="1">
+          <mxGeometry height="34" width="380" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="i_tcp" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=44;html=1;collapsible=0;fillColor=#e1d5e7;strokeColor=#9673a6;swimlaneFillColor=#ffffff;" value="«interface»&#xa;TcpServer" vertex="1">
+          <mxGeometry height="100" width="380" x="520" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="i_tcp_m" parent="i_tcp" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ start(): Promise&lt;void&gt;&#xa;+ stop(): Promise&lt;void&gt;" vertex="1">
+          <mxGeometry height="52" width="380" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="i_tcpaddr" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=44;html=1;collapsible=0;fillColor=#e1d5e7;strokeColor=#9673a6;swimlaneFillColor=#ffffff;" value="«interface»&#xa;TcpServerWithAddress" vertex="1">
+          <mxGeometry height="100" width="420" x="1000" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="i_tcpaddr_m" parent="i_tcpaddr" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ address(): AddressInfo&#xa;+ connections(): ConnectionRegistry" vertex="1">
+          <mxGeometry height="52" width="420" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="i_producer" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=44;html=1;collapsible=0;fillColor=#e1d5e7;strokeColor=#9673a6;swimlaneFillColor=#ffffff;" value="«interface»&#xa;MessageProducer" vertex="1">
+          <mxGeometry height="118" width="420" x="1520" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="i_producer_m" parent="i_producer" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ connect(): Promise&lt;void&gt;&#xa;+ send(event: RawEvent, key?: string): Promise&lt;void&gt;&#xa;+ disconnect(): Promise&lt;void&gt;" vertex="1">
+          <mxGeometry height="70" width="420" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="i_registry" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=44;html=1;collapsible=0;fillColor=#e1d5e7;strokeColor=#9673a6;swimlaneFillColor=#ffffff;" value="«interface»&#xa;ConnectionRegistry" vertex="1">
+          <mxGeometry height="134" width="380" x="2040" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="i_registry_m" parent="i_registry" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ register(imei: string, socket: Socket): void&#xa;+ unregister(imei: string, socket: Socket): void&#xa;+ destroyAll(): void&#xa;+ size(): number" vertex="1">
+          <mxGeometry height="88" width="380" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="i_auth" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=44;html=1;collapsible=0;fillColor=#e1d5e7;strokeColor=#9673a6;swimlaneFillColor=#ffffff;" value="«interface»&#xa;DeviceAuthService" vertex="1">
+          <mxGeometry height="100" width="400" x="2520" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="i_auth_m" parent="i_auth" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ authenticate(imei: string):&#xa;       Promise&lt;DeviceContext | null&gt;" vertex="1">
+          <mxGeometry height="52" width="400" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="f_logprod" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=44;html=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;swimlaneFillColor=#ffffff;" value="«factory»&#xa;createLogProducer" vertex="1">
+          <mxGeometry height="120" width="380" x="40" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="f_logprod_m" parent="f_logprod" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ createLogProducer():&#xa;       MessageProducer&#xa;  (declared in index.ts; LOG_ONLY no-op)" vertex="1">
+          <mxGeometry height="72" width="380" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="f_kafka" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=44;html=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;swimlaneFillColor=#ffffff;" value="«factory»&#xa;createKafkaProducer" vertex="1">
+          <mxGeometry height="220" width="380" x="520" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="f_kafka_a" parent="f_kafka" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="- kafka: Kafka&#xa;- producer: Producer" vertex="1">
+          <mxGeometry height="44" width="380" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="f_kafka_l" parent="f_kafka" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];" value="" vertex="1">
+          <mxGeometry height="8" width="380" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="f_kafka_m" parent="f_kafka" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ createKafkaProducer(config, logger):&#xa;       MessageProducer&#xa;- connect(): Promise&lt;void&gt;&#xa;- send(event: RawEvent, key?): Promise&lt;void&gt;&#xa;- disconnect(): Promise&lt;void&gt;" vertex="1">
+          <mxGeometry height="100" width="380" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="f_tcp" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=44;html=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;swimlaneFillColor=#ffffff;" value="«factory»&#xa;createTcpServer" vertex="1">
+          <mxGeometry height="240" width="420" x="1000" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="f_tcp_a" parent="f_tcp" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="- server: net.Server&#xa;- registry: ConnectionRegistry" vertex="1">
+          <mxGeometry height="44" width="420" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="f_tcp_l" parent="f_tcp" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];" value="" vertex="1">
+          <mxGeometry height="8" width="420" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="f_tcp_m" parent="f_tcp" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ createTcpServer(config, logger,&#xa;       producer, deviceAuth?): TcpServerWithAddress&#xa;- start() / stop(): Promise&lt;void&gt;&#xa;- address(): AddressInfo&#xa;- connections(): ConnectionRegistry" vertex="1">
+          <mxGeometry height="100" width="420" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="f_handler" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=44;html=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;swimlaneFillColor=#ffffff;" value="«factory · hub»&#xa;createConnectionHandler" vertex="1">
+          <mxGeometry height="300" width="420" x="1520" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="f_handler_a" parent="f_handler" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="- state: ConnectionState&#xa;- buffer: Buffer&#xa;- imei: string&#xa;- deviceContext: DeviceContext | null&#xa;- hasReceivedData: boolean" vertex="1">
+          <mxGeometry height="98" width="420" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="f_handler_l" parent="f_handler" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];" value="" vertex="1">
+          <mxGeometry height="8" width="420" y="142" as="geometry" />
+        </mxCell>
+        <mxCell id="f_handler_m" parent="f_handler" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ createConnectionHandler(socket, logger,&#xa;       producer, registry, deviceAuth?): void&#xa;- handleLogin(): Promise&lt;void&gt;&#xa;- handleAvlData(): void&#xa;- tryParseEnvelope(buf, logger, imei)" vertex="1">
+          <mxGeometry height="100" width="420" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="f_registry" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=44;html=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;swimlaneFillColor=#ffffff;" value="«factory»&#xa;createConnectionRegistry" vertex="1">
+          <mxGeometry height="210" width="380" x="2040" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="f_registry_a" parent="f_registry" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="- connections: Map&lt;string, net.Socket&gt;" vertex="1">
+          <mxGeometry height="28" width="380" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="f_registry_l" parent="f_registry" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];" value="" vertex="1">
+          <mxGeometry height="8" width="380" y="72" as="geometry" />
+        </mxCell>
+        <mxCell id="f_registry_m" parent="f_registry" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ createConnectionRegistry(): ConnectionRegistry&#xa;- register(imei, socket)  (evicts stale socket)&#xa;- unregister(imei, socket)&#xa;- destroyAll() / size()" vertex="1">
+          <mxGeometry height="88" width="380" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="f_auth" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=44;html=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;swimlaneFillColor=#ffffff;" value="«factory»&#xa;createDeviceAuthService" vertex="1">
+          <mxGeometry height="290" width="400" x="2520" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="f_auth_a" parent="f_auth" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="- VALKEY_KEYSPACE = &#39;vzone.vehicle.events&#39;&#xa;- CACHE_TTL_SECONDS = 86400" vertex="1">
+          <mxGeometry height="44" width="400" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="f_auth_l" parent="f_auth" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];" value="" vertex="1">
+          <mxGeometry height="8" width="400" y="88" as="geometry" />
+        </mxCell>
+        <mxCell id="f_auth_m" parent="f_auth" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ createDeviceAuthService(valkey: Redis,&#xa;       pg: Pool, logger): DeviceAuthService&#xa;- authenticate(imei)  — cache-aside&#xa;- authenticateFromValkey(imei)&#xa;- authenticateFromPostgres(imei)&#xa;- cacheInValkey(imei, context)&#xa;- valkeyKey(imei): string" vertex="1">
+          <mxGeometry height="140" width="400" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="d_kafkacfg" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=42;html=1;collapsible=0;fillColor=#d5e8d4;strokeColor=#82b366;swimlaneFillColor=#ffffff;" value="«interface»&#xa;KafkaProducerConfig" vertex="1">
+          <mxGeometry height="116" width="300" x="299" y="1520" as="geometry" />
+        </mxCell>
+        <mxCell id="d_kafkacfg_a" parent="d_kafkacfg" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ brokers: readonly string[]&#xa;+ topic: string&#xa;+ clientId: string" vertex="1">
+          <mxGeometry height="74" width="300" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="e_kafka" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=42;html=1;collapsible=0;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;swimlaneFillColor=#ffffff;fontColor=#333333;" value="«external»&#xa;Kafka (kafkajs)" vertex="1">
+          <mxGeometry height="116" width="280" x="629" y="1520" as="geometry" />
+        </mxCell>
+        <mxCell id="e_kafka_m" parent="e_kafka" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ producer(): Producer&#xa;Producer.connect / send / disconnect" vertex="1">
+          <mxGeometry height="74" width="280" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="d_tcpcfg" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=42;html=1;collapsible=0;fillColor=#d5e8d4;strokeColor=#82b366;swimlaneFillColor=#ffffff;" value="«interface»&#xa;TcpServerConfig" vertex="1">
+          <mxGeometry height="98" width="320" x="1000" y="1520" as="geometry" />
+        </mxCell>
+        <mxCell id="d_tcpcfg_a" parent="d_tcpcfg" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ port: number&#xa;+ host?: string" vertex="1">
+          <mxGeometry height="52" width="320" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="d_rawevent" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=42;html=1;collapsible=0;fillColor=#d5e8d4;strokeColor=#82b366;swimlaneFillColor=#ffffff;" value="«interface»&#xa;RawEvent  (DTO)" vertex="1">
+          <mxGeometry height="220" width="320" x="1440" y="1520" as="geometry" />
+        </mxCell>
+        <mxCell id="d_rawevent_a" parent="d_rawevent" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ event_id: string&#xa;+ correlation_id: string&#xa;+ vehicle_id: string | null&#xa;+ device_manufacturer: string&#xa;+ device_model: string&#xa;+ received_at: string&#xa;+ device_imei: string&#xa;+ raw_data: string  (hex)" vertex="1">
+          <mxGeometry height="154" width="320" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="e_teltonika" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=42;html=1;collapsible=0;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;swimlaneFillColor=#ffffff;fontColor=#333333;" value="«external»&#xa;@gnapi-tech/teltonika-gps-device-parser" vertex="1">
+          <mxGeometry height="160" width="380" x="1800" y="1520" as="geometry" />
+        </mxCell>
+        <mxCell id="e_teltonika_m" parent="e_teltonika" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ parseLoginPacket(buf)&#xa;+ parseAVLPacketEnvelope(buf)&#xa;+ buildLoginAck(ok): Buffer&#xa;+ buildAVLAck(count): Buffer&#xa;+ TeltonikaParseError" vertex="1">
+          <mxGeometry height="108" width="380" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="d_state" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=42;html=1;collapsible=0;fillColor=#fff2cc;strokeColor=#d6b656;swimlaneFillColor=#ffffff;" value="«type»&#xa;ConnectionState" vertex="1">
+          <mxGeometry height="98" width="260" x="2220" y="1520" as="geometry" />
+        </mxCell>
+        <mxCell id="d_state_a" parent="d_state" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="&#39;awaiting_login&#39;&#xa;&#39;authenticated&#39;" vertex="1">
+          <mxGeometry height="52" width="260" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="d_devctx" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=42;html=1;collapsible=0;fillColor=#d5e8d4;strokeColor=#82b366;swimlaneFillColor=#ffffff;" value="«interface»&#xa;DeviceContext  (DTO)" vertex="1">
+          <mxGeometry height="116" width="300" x="2570" y="1520" as="geometry" />
+        </mxCell>
+        <mxCell id="d_devctx_a" parent="d_devctx" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ vehicleId: string | null&#xa;+ deviceManufacturer: string | null&#xa;+ deviceModel: string | null" vertex="1">
+          <mxGeometry height="70" width="300" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="e_redis" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=42;html=1;collapsible=0;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;swimlaneFillColor=#ffffff;fontColor=#333333;" value="«external»&#xa;Redis (ioredis / Valkey)" vertex="1">
+          <mxGeometry height="116" width="280" x="2900" y="1520" as="geometry" />
+        </mxCell>
+        <mxCell id="e_redis_m" parent="e_redis" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ hgetall(key)&#xa;+ multi() / del / hset / expire&#xa;+ on(&#39;error&#39;, cb)" vertex="1">
+          <mxGeometry height="70" width="280" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="e_pg" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=42;html=1;collapsible=0;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;swimlaneFillColor=#ffffff;fontColor=#333333;" value="«external»&#xa;Pool (pg)" vertex="1">
+          <mxGeometry height="98" width="280" x="3200" y="1520" as="geometry" />
+        </mxCell>
+        <mxCell id="e_pg_m" parent="e_pg" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ query(sql, params): Result&#xa;  (devices ⋅ vehicle_device_assignments)" vertex="1">
+          <mxGeometry height="52" width="280" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="g1" edge="1" parent="1" source="i_tcpaddr" style="rounded=0;html=1;jettySize=auto;endArrow=block;endFill=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="i_tcp" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r1" edge="1" parent="1" source="f_tcp" style="rounded=0;html=1;jettySize=auto;endArrow=block;endFill=0;dashed=1;exitX=0.38;exitY=0;exitDx=0;exitDy=0;entryX=0.38;entryY=1;entryDx=0;entryDy=0;" target="i_tcpaddr" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r4" edge="1" parent="1" source="f_registry" style="rounded=0;html=1;jettySize=auto;endArrow=block;endFill=0;dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="i_registry" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r5" edge="1" parent="1" source="f_auth" style="rounded=0;html=1;jettySize=auto;endArrow=block;endFill=0;dashed=1;exitX=0.38;exitY=0;exitDx=0;exitDy=0;entryX=0.38;entryY=1;entryDx=0;entryDy=0;" target="i_auth" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r2" edge="1" parent="1" source="f_kafka" style="rounded=0;html=1;jettySize=auto;endArrow=block;endFill=0;dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.33;entryY=1;entryDx=0;entryDy=0;" target="i_producer" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="710" y="820" />
+              <mxPoint x="1660" y="820" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r3" edge="1" parent="1" source="f_logprod" style="rounded=0;html=1;jettySize=auto;endArrow=block;endFill=0;dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.67;entryY=1;entryDx=0;entryDy=0;" target="i_producer" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="230" y="780" />
+              <mxPoint x="1800" y="780" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="w1" edge="1" parent="1" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;" value="creates">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1060" y="480" />
+              <mxPoint x="490" y="480" />
+              <mxPoint x="490" y="950" />
+              <mxPoint x="250" y="950" />
+              <mxPoint x="250" y="990" />
+            </Array>
+            <mxPoint x="1060" y="460" as="sourcePoint" />
+            <mxPoint x="250" y="1040" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="w2" edge="1" parent="1" source="c_index" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.065;exitY=1;exitDx=0;exitDy=0;entryX=0.447;entryY=-0.005;entryDx=0;entryDy=0;entryPerimeter=0;" target="f_kafka" value="creates">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1080" y="500" />
+              <mxPoint x="470" y="500" />
+              <mxPoint x="470" y="970" />
+              <mxPoint x="690" y="970" />
+              <mxPoint x="690" y="1000" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="w3" edge="1" parent="1" source="c_index" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.1;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="f_tcp" value="creates">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1102" y="525" />
+              <mxPoint x="950" y="525" />
+              <mxPoint x="950" y="990" />
+              <mxPoint x="1210" y="990" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="w4" edge="1" parent="1" source="c_index" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.935;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="f_auth" value="creates">
+          <mxGeometry relative="1" x="0.0407" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1620" y="480" />
+              <mxPoint x="2470" y="480" />
+              <mxPoint x="2470" y="980" />
+              <mxPoint x="2720" y="980" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="c1e" edge="1" parent="1" source="f_tcp" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=1;exitY=0.375;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;" target="f_handler" value="creates">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c2e" edge="1" parent="1" source="f_tcp" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.71;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="f_registry" value="creates">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1300" y="1370" />
+              <mxPoint x="2230" y="1370" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="h1" edge="1" parent="1" source="f_handler" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="i_producer" value="uses">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="h2" edge="1" parent="1" source="f_handler" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.74;exitY=0;exitDx=0;exitDy=0;entryX=0.424;entryY=1.033;entryDx=0;entryDy=0;entryPerimeter=0;" target="i_registry_m" value="uses">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1830" y="880" />
+              <mxPoint x="2200" y="880" />
+              <mxPoint x="2200" y="790" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="h3" edge="1" parent="1" source="f_handler" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.857;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="i_auth" value="uses">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1880" y="900" />
+              <mxPoint x="2720" y="900" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="h5" edge="1" parent="1" source="f_handler" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.19;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="d_rawevent" value="creates">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="h4" edge="1" parent="1" source="f_handler" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.905;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="e_teltonika" value="uses">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1900" y="1400" />
+              <mxPoint x="1990" y="1400" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="h6" edge="1" parent="1" source="f_handler" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.98;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="d_state" value="uses">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1932" y="1440" />
+              <mxPoint x="2350" y="1440" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f1e" edge="1" parent="1" source="f_kafka" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.1;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="d_kafkacfg" value="uses">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="558" y="1390" />
+              <mxPoint x="450" y="1390" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f2e" edge="1" parent="1" source="f_kafka" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.658;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="e_kafka" value="uses">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f3e" edge="1" parent="1" source="f_tcp" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.38;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="d_tcpcfg" value="uses">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f4e" edge="1" parent="1" source="f_auth" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="d_devctx" value="returns">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f5e" edge="1" parent="1" source="f_auth" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.85;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="e_redis" value="uses">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2860" y="1395" />
+              <mxPoint x="3040" y="1395" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="f6e" edge="1" parent="1" source="f_auth" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.95;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="e_pg" value="uses">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2900" y="1450" />
+              <mxPoint x="3340" y="1450" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
