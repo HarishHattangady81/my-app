@@ -1,28 +1,379 @@
 <mxfile host="app.diagrams.net">
-  <diagram name="Page-1" id="I9xoiEy4OwwbxSS0wLVf">
+  <diagram id="puF8FLkVwDZXD38lTshh" name="vzone-ingestion-gateway LLD">
     <mxGraphModel dx="1414" dy="743" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="YOtJhBQENh-AZoEkkRLA-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="" vertex="1">
-          <mxGeometry height="80" width="80" x="360" y="340" as="geometry" />
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-1" parent="1" style="text;html=1;fontSize=26;fontStyle=1;align=left;verticalAlign=middle;" value="vzone-ingestion-gateway  —  Low-Level Design (UML Class Diagram)" vertex="1">
+          <mxGeometry height="40" width="960" x="120" y="110" as="geometry" />
         </mxCell>
-        <mxCell id="YOtJhBQENh-AZoEkkRLA-2" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="" vertex="1">
-          <mxGeometry height="80" width="80" x="240" y="340" as="geometry" />
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-2" parent="1" style="swimlane;startSize=26;fontStyle=1;html=1;fillColor=#ffffff;strokeColor=#666666;align=center;verticalAlign=top;fontSize=14;" value="Legend" vertex="1">
+          <mxGeometry height="326" width="920" x="110" y="160" as="geometry" />
         </mxCell>
-        <mxCell id="YOtJhBQENh-AZoEkkRLA-3" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="" vertex="1">
-          <mxGeometry height="80" width="80" x="480" y="340" as="geometry" />
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-3" parent="cyGvPtCkyGEfTIRO07Su-2" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="«interface» Port" vertex="1">
+          <mxGeometry height="36" width="200" x="20" y="44" as="geometry" />
         </mxCell>
-        <mxCell id="YOtJhBQENh-AZoEkkRLA-4" edge="1" parent="1" style="endArrow=classic;startArrow=classic;html=1;rounded=0;" value="">
-          <mxGeometry height="100" relative="1" width="100" as="geometry">
-            <mxPoint x="310" y="379.5" as="sourcePoint" />
-            <mxPoint x="380" y="379.5" as="targetPoint" />
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-4" parent="cyGvPtCkyGEfTIRO07Su-2" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="«factory» Implementation" vertex="1">
+          <mxGeometry height="36" width="220" x="250" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-5" parent="cyGvPtCkyGEfTIRO07Su-2" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="DTO / Config" vertex="1">
+          <mxGeometry height="36" width="180" x="500" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-6" parent="cyGvPtCkyGEfTIRO07Su-2" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="«type» Enum" vertex="1">
+          <mxGeometry height="36" width="180" x="710" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-7" parent="cyGvPtCkyGEfTIRO07Su-2" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;" value="«external» Library" vertex="1">
+          <mxGeometry height="36" width="200" x="20" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-8" parent="cyGvPtCkyGEfTIRO07Su-2" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="Composition Root" vertex="1">
+          <mxGeometry height="36" width="220" x="250" y="96" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-9" parent="cyGvPtCkyGEfTIRO07Su-2" style="text;html=1;align=left;fontSize=13;verticalAlign=middle;" value="△———  generalization  (B extends A)" vertex="1">
+          <mxGeometry height="24" width="430" x="20" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-10" parent="cyGvPtCkyGEfTIRO07Su-2" style="text;html=1;align=left;fontSize=13;verticalAlign=middle;" value="△- - - -  realization  (factory returns / implements port)" vertex="1">
+          <mxGeometry height="24" width="600" x="20" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-11" parent="cyGvPtCkyGEfTIRO07Su-2" style="text;html=1;align=left;fontSize=13;verticalAlign=middle;" value="→- - - -  dependency  (uses / creates / returns)" vertex="1">
+          <mxGeometry height="24" width="600" x="20" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-12" parent="cyGvPtCkyGEfTIRO07Su-2" style="text;html=1;align=left;fontSize=13;verticalAlign=middle;" value="Visibility:    +  public        –  private (module-local closure)" vertex="1">
+          <mxGeometry height="24" width="700" x="20" y="252" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-13" parent="1" style="text;html=1;fontSize=15;fontStyle=1;fontColor=#b46504;align=center;" value="COMPOSITION ROOT  ·  src/index.ts" vertex="1">
+          <mxGeometry height="24" width="620" x="1120" y="206" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-14" parent="1" style="text;html=1;fontSize=15;fontStyle=1;fontColor=#6c3483;align=left;" value="PORTS  ·  INTERFACES  (src/types.ts, *.ts)" vertex="1">
+          <mxGeometry height="24" width="700" x="120" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-15" parent="1" style="text;html=1;fontSize=15;fontStyle=1;fontColor=#1f4e79;align=left;" value="FACTORY IMPLEMENTATIONS  (one factory per port + the connection handler hub)" vertex="1">
+          <mxGeometry height="24" width="600" x="120" y="1082" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-16" parent="1" style="text;html=1;fontSize=15;fontStyle=1;fontColor=#386641;align=center;" value="DATA CONTRACTS (DTOs / Config / Enum) &lt;br&gt;&amp;nbsp;&amp;amp;   EXTERNAL DEPENDENCIES" vertex="1">
+          <mxGeometry height="24" width="291" x="383.5" y="1539" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-17" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=44;html=1;collapsible=0;fillColor=#ffe6cc;strokeColor=#d79b00;swimlaneFillColor=#ffffff;" value="«composition root»&#xa;index.ts" vertex="1">
+          <mxGeometry height="300" width="1860" x="1120" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-18" parent="cyGvPtCkyGEfTIRO07Su-17" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=2;overflow=hidden;" value="- logger: Logger&#xa;- useKafka: boolean&#xa;- deviceAuth?: DeviceAuthService&#xa;- instantiates new Redis(ioredis) + new pg.Pool" vertex="1">
+          <mxGeometry height="256" width="620" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-19" parent="cyGvPtCkyGEfTIRO07Su-17" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];" value="" vertex="1">
+          <mxGeometry height="256" width="620" x="620" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-20" parent="cyGvPtCkyGEfTIRO07Su-17" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingRight=8;spacingTop=2;overflow=hidden;" value="- main(): Promise&lt;void&gt;&#xa;- requireEnv(name): string&#xa;- parsePort(value): number&#xa;- shutdown(signal): Promise&lt;void&gt;   (SIGTERM / SIGINT)&#xa;- createLogProducer(): MessageProducer   (LOG_ONLY fallback)" vertex="1">
+          <mxGeometry height="256" width="620" x="1240" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-21" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=44;html=1;collapsible=0;fillColor=#e1d5e7;strokeColor=#9673a6;swimlaneFillColor=#ffffff;" value="«interface»&#xa;Logger" vertex="1">
+          <mxGeometry height="82" width="380" x="120" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-22" parent="cyGvPtCkyGEfTIRO07Su-21" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ log(message: string): void" vertex="1">
+          <mxGeometry height="38" width="380" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-23" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=44;html=1;collapsible=0;fillColor=#e1d5e7;strokeColor=#9673a6;swimlaneFillColor=#ffffff;" value="«interface»&#xa;TcpServer" vertex="1">
+          <mxGeometry height="100" width="380" x="600" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-24" parent="cyGvPtCkyGEfTIRO07Su-23" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ start(): Promise&lt;void&gt;&#xa;+ stop(): Promise&lt;void&gt;" vertex="1">
+          <mxGeometry height="56" width="380" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-25" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=44;html=1;collapsible=0;fillColor=#e1d5e7;strokeColor=#9673a6;swimlaneFillColor=#ffffff;" value="«interface»&#xa;TcpServerWithAddress" vertex="1">
+          <mxGeometry height="100" width="420" x="1080" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-26" parent="cyGvPtCkyGEfTIRO07Su-25" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ address(): AddressInfo&#xa;+ connections(): ConnectionRegistry" vertex="1">
+          <mxGeometry height="56" width="420" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-27" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=44;html=1;collapsible=0;fillColor=#e1d5e7;strokeColor=#9673a6;swimlaneFillColor=#ffffff;" value="«interface»&#xa;MessageProducer" vertex="1">
+          <mxGeometry height="118" width="420" x="1600" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-28" parent="cyGvPtCkyGEfTIRO07Su-27" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ connect(): Promise&lt;void&gt;&#xa;+ send(event: RawEvent, key?: string): Promise&lt;void&gt;&#xa;+ disconnect(): Promise&lt;void&gt;" vertex="1">
+          <mxGeometry height="74" width="420" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-29" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=44;html=1;collapsible=0;fillColor=#e1d5e7;strokeColor=#9673a6;swimlaneFillColor=#ffffff;" value="«interface»&#xa;ConnectionRegistry" vertex="1">
+          <mxGeometry height="134" width="380" x="2120" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-30" parent="cyGvPtCkyGEfTIRO07Su-29" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ register(imei: string, socket: Socket): void&#xa;+ unregister(imei: string, socket: Socket): void&#xa;+ destroyAll(): void&#xa;+ size(): number" vertex="1">
+          <mxGeometry height="90" width="380" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-31" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=44;html=1;collapsible=0;fillColor=#e1d5e7;strokeColor=#9673a6;swimlaneFillColor=#ffffff;" value="«interface»&#xa;DeviceAuthService" vertex="1">
+          <mxGeometry height="100" width="400" x="2600" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-32" parent="cyGvPtCkyGEfTIRO07Su-31" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ authenticate(imei: string):&#xa;       Promise&lt;DeviceContext | null&gt;" vertex="1">
+          <mxGeometry height="56" width="400" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-33" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=44;html=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;swimlaneFillColor=#ffffff;" value="«factory»&#xa;createLogProducer" vertex="1">
+          <mxGeometry height="120" width="380" x="120" y="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-34" parent="cyGvPtCkyGEfTIRO07Su-33" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ createLogProducer():&#xa;       MessageProducer&#xa;  (declared in index.ts; LOG_ONLY no-op)" vertex="1">
+          <mxGeometry height="76" width="380" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-35" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=44;html=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;swimlaneFillColor=#ffffff;" value="«factory»&#xa;createKafkaProducer" vertex="1">
+          <mxGeometry height="220" width="1140" x="600" y="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-36" parent="cyGvPtCkyGEfTIRO07Su-35" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="- kafka: Kafka&#xa;- producer: Producer" vertex="1">
+          <mxGeometry height="176" width="380" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-37" parent="cyGvPtCkyGEfTIRO07Su-35" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];" value="" vertex="1">
+          <mxGeometry height="176" width="380" x="380" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-38" parent="cyGvPtCkyGEfTIRO07Su-35" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ createKafkaProducer(config, logger):&#xa;       MessageProducer&#xa;- connect(): Promise&lt;void&gt;&#xa;- send(event: RawEvent, key?): Promise&lt;void&gt;&#xa;- disconnect(): Promise&lt;void&gt;" vertex="1">
+          <mxGeometry height="176" width="380" x="760" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-39" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=44;html=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;swimlaneFillColor=#ffffff;" value="«factory»&#xa;createTcpServer" vertex="1">
+          <mxGeometry height="240" width="1260" x="1080" y="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-40" parent="cyGvPtCkyGEfTIRO07Su-39" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="- server: net.Server&#xa;- registry: ConnectionRegistry" vertex="1">
+          <mxGeometry height="196" width="420" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-41" parent="cyGvPtCkyGEfTIRO07Su-39" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];" value="" vertex="1">
+          <mxGeometry height="196" width="420" x="420" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-42" parent="cyGvPtCkyGEfTIRO07Su-39" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ createTcpServer(config, logger,&#xa;       producer, deviceAuth?): TcpServerWithAddress&#xa;- start() / stop(): Promise&lt;void&gt;&#xa;- address(): AddressInfo&#xa;- connections(): ConnectionRegistry" vertex="1">
+          <mxGeometry height="196" width="420" x="840" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-43" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=44;html=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;swimlaneFillColor=#ffffff;" value="«factory · hub»&#xa;createConnectionHandler" vertex="1">
+          <mxGeometry height="300" width="1260" x="1600" y="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-44" parent="cyGvPtCkyGEfTIRO07Su-43" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="- state: ConnectionState&#xa;- buffer: Buffer&#xa;- imei: string&#xa;- deviceContext: DeviceContext | null&#xa;- hasReceivedData: boolean" vertex="1">
+          <mxGeometry height="256" width="420" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-45" parent="cyGvPtCkyGEfTIRO07Su-43" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];" value="" vertex="1">
+          <mxGeometry height="256" width="420" x="420" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-46" parent="cyGvPtCkyGEfTIRO07Su-43" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ createConnectionHandler(socket, logger,&#xa;       producer, registry, deviceAuth?): void&#xa;- handleLogin(): Promise&lt;void&gt;&#xa;- handleAvlData(): void&#xa;- tryParseEnvelope(buf, logger, imei)" vertex="1">
+          <mxGeometry height="256" width="420" x="840" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-47" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=44;html=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;swimlaneFillColor=#ffffff;" value="«factory»&#xa;createConnectionRegistry" vertex="1">
+          <mxGeometry height="210" width="1140" x="2120" y="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-48" parent="cyGvPtCkyGEfTIRO07Su-47" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="- connections: Map&lt;string, net.Socket&gt;" vertex="1">
+          <mxGeometry height="166" width="380" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-49" parent="cyGvPtCkyGEfTIRO07Su-47" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];" value="" vertex="1">
+          <mxGeometry height="166" width="380" x="380" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-50" parent="cyGvPtCkyGEfTIRO07Su-47" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ createConnectionRegistry(): ConnectionRegistry&#xa;- register(imei, socket)  (evicts stale socket)&#xa;- unregister(imei, socket)&#xa;- destroyAll() / size()" vertex="1">
+          <mxGeometry height="166" width="380" x="760" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-51" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=44;html=1;collapsible=0;fillColor=#dae8fc;strokeColor=#6c8ebf;swimlaneFillColor=#ffffff;" value="«factory»&#xa;createDeviceAuthService" vertex="1">
+          <mxGeometry height="290" width="1200" x="2600" y="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-52" parent="cyGvPtCkyGEfTIRO07Su-51" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="- VALKEY_KEYSPACE = &#39;vzone.vehicle.events&#39;&#xa;- CACHE_TTL_SECONDS = 86400" vertex="1">
+          <mxGeometry height="246" width="400" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-53" parent="cyGvPtCkyGEfTIRO07Su-51" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];" value="" vertex="1">
+          <mxGeometry height="246" width="400" x="400" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-54" parent="cyGvPtCkyGEfTIRO07Su-51" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ createDeviceAuthService(valkey: Redis,&#xa;       pg: Pool, logger): DeviceAuthService&#xa;- authenticate(imei)  — cache-aside&#xa;- authenticateFromValkey(imei)&#xa;- authenticateFromPostgres(imei)&#xa;- cacheInValkey(imei, context)&#xa;- valkeyKey(imei): string" vertex="1">
+          <mxGeometry height="246" width="400" x="800" y="44" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-55" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=42;html=1;collapsible=0;fillColor=#d5e8d4;strokeColor=#82b366;swimlaneFillColor=#ffffff;" value="«interface»&#xa;KafkaProducerConfig" vertex="1">
+          <mxGeometry height="116" width="300" x="379" y="1600" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-56" parent="cyGvPtCkyGEfTIRO07Su-55" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ brokers: readonly string[]&#xa;+ topic: string&#xa;+ clientId: string" vertex="1">
+          <mxGeometry height="74" width="300" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-57" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=42;html=1;collapsible=0;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;swimlaneFillColor=#ffffff;fontColor=#333333;" value="«external»&#xa;Kafka (kafkajs)" vertex="1">
+          <mxGeometry height="116" width="280" x="709" y="1600" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-58" parent="cyGvPtCkyGEfTIRO07Su-57" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ producer(): Producer&#xa;Producer.connect / send / disconnect" vertex="1">
+          <mxGeometry height="74" width="280" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-59" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=42;html=1;collapsible=0;fillColor=#d5e8d4;strokeColor=#82b366;swimlaneFillColor=#ffffff;" value="«interface»&#xa;TcpServerConfig" vertex="1">
+          <mxGeometry height="98" width="320" x="1080" y="1600" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-60" parent="cyGvPtCkyGEfTIRO07Su-59" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ port: number&#xa;+ host?: string" vertex="1">
+          <mxGeometry height="56" width="320" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-61" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=42;html=1;collapsible=0;fillColor=#d5e8d4;strokeColor=#82b366;swimlaneFillColor=#ffffff;" value="«interface»&#xa;RawEvent  (DTO)" vertex="1">
+          <mxGeometry height="220" width="320" x="1520" y="1600" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-62" parent="cyGvPtCkyGEfTIRO07Su-61" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ event_id: string&#xa;+ correlation_id: string&#xa;+ vehicle_id: string | null&#xa;+ device_manufacturer: string&#xa;+ device_model: string&#xa;+ received_at: string&#xa;+ device_imei: string&#xa;+ raw_data: string  (hex)" vertex="1">
+          <mxGeometry height="178" width="320" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-63" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=42;html=1;collapsible=0;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;swimlaneFillColor=#ffffff;fontColor=#333333;" value="«external»&#xa;@gnapi-tech/teltonika-gps-device-parser" vertex="1">
+          <mxGeometry height="160" width="380" x="1880" y="1600" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-64" parent="cyGvPtCkyGEfTIRO07Su-63" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ parseLoginPacket(buf)&#xa;+ parseAVLPacketEnvelope(buf)&#xa;+ buildLoginAck(ok): Buffer&#xa;+ buildAVLAck(count): Buffer&#xa;+ TeltonikaParseError" vertex="1">
+          <mxGeometry height="118" width="380" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-65" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=42;html=1;collapsible=0;fillColor=#fff2cc;strokeColor=#d6b656;swimlaneFillColor=#ffffff;" value="«type»&#xa;ConnectionState" vertex="1">
+          <mxGeometry height="98" width="260" x="2300" y="1600" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-66" parent="cyGvPtCkyGEfTIRO07Su-65" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="&#39;awaiting_login&#39;&#xa;&#39;authenticated&#39;" vertex="1">
+          <mxGeometry height="56" width="260" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-67" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=42;html=1;collapsible=0;fillColor=#d5e8d4;strokeColor=#82b366;swimlaneFillColor=#ffffff;" value="«interface»&#xa;DeviceContext  (DTO)" vertex="1">
+          <mxGeometry height="116" width="300" x="2650" y="1600" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-68" parent="cyGvPtCkyGEfTIRO07Su-67" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ vehicleId: string | null&#xa;+ deviceManufacturer: string | null&#xa;+ deviceModel: string | null" vertex="1">
+          <mxGeometry height="74" width="300" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-69" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=42;html=1;collapsible=0;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;swimlaneFillColor=#ffffff;fontColor=#333333;" value="«external»&#xa;Redis (ioredis / Valkey)" vertex="1">
+          <mxGeometry height="116" width="280" x="2980" y="1600" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-70" parent="cyGvPtCkyGEfTIRO07Su-69" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ hgetall(key)&#xa;+ multi() / del / hset / expire&#xa;+ on(&#39;error&#39;, cb)" vertex="1">
+          <mxGeometry height="74" width="280" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-71" parent="1" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;startSize=42;html=1;collapsible=0;fillColor=#f5f5f5;strokeColor=#666666;dashed=1;swimlaneFillColor=#ffffff;fontColor=#333333;" value="«external»&#xa;Pool (pg)" vertex="1">
+          <mxGeometry height="98" width="280" x="3280" y="1600" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-72" parent="cyGvPtCkyGEfTIRO07Su-71" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=8;spacingTop=2;overflow=hidden;" value="+ query(sql, params): Result&#xa;  (devices ⋅ vehicle_device_assignments)" vertex="1">
+          <mxGeometry height="56" width="280" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-73" edge="1" parent="1" source="cyGvPtCkyGEfTIRO07Su-25" style="rounded=0;html=1;jettySize=auto;endArrow=block;endFill=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="cyGvPtCkyGEfTIRO07Su-23" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-74" edge="1" parent="1" source="cyGvPtCkyGEfTIRO07Su-39" style="rounded=0;html=1;jettySize=auto;endArrow=block;endFill=0;dashed=1;exitX=0.38;exitY=0;exitDx=0;exitDy=0;entryX=0.38;entryY=1;entryDx=0;entryDy=0;" target="cyGvPtCkyGEfTIRO07Su-25" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-75" edge="1" parent="1" source="cyGvPtCkyGEfTIRO07Su-47" style="rounded=0;html=1;jettySize=auto;endArrow=block;endFill=0;dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="cyGvPtCkyGEfTIRO07Su-29" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-76" edge="1" parent="1" source="cyGvPtCkyGEfTIRO07Su-51" style="rounded=0;html=1;jettySize=auto;endArrow=block;endFill=0;dashed=1;exitX=0.38;exitY=0;exitDx=0;exitDy=0;entryX=0.38;entryY=1;entryDx=0;entryDy=0;" target="cyGvPtCkyGEfTIRO07Su-31" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-77" edge="1" parent="1" source="cyGvPtCkyGEfTIRO07Su-35" style="rounded=0;html=1;jettySize=auto;endArrow=block;endFill=0;dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.33;entryY=1;entryDx=0;entryDy=0;" target="cyGvPtCkyGEfTIRO07Su-27" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="790" y="900" />
+              <mxPoint x="1740" y="900" />
+            </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="YOtJhBQENh-AZoEkkRLA-5" edge="1" parent="1" style="endArrow=classic;startArrow=classic;html=1;rounded=0;" value="">
-          <mxGeometry height="100" relative="1" width="100" as="geometry">
-            <mxPoint x="420" y="379.5" as="sourcePoint" />
-            <mxPoint x="490" y="379.5" as="targetPoint" />
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-78" edge="1" parent="1" source="cyGvPtCkyGEfTIRO07Su-33" style="rounded=0;html=1;jettySize=auto;endArrow=block;endFill=0;dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.67;entryY=1;entryDx=0;entryDy=0;" target="cyGvPtCkyGEfTIRO07Su-27" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="310" y="860" />
+              <mxPoint x="1880" y="860" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-79" edge="1" parent="1" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;" value="creates">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1140" y="560" />
+              <mxPoint x="570" y="560" />
+              <mxPoint x="570" y="1030" />
+              <mxPoint x="330" y="1030" />
+              <mxPoint x="330" y="1070" />
+            </Array>
+            <mxPoint x="1140" y="540" as="sourcePoint" />
+            <mxPoint x="330" y="1120" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-80" edge="1" parent="1" source="cyGvPtCkyGEfTIRO07Su-17" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.065;exitY=1;exitDx=0;exitDy=0;entryX=0.447;entryY=-0.005;entryDx=0;entryDy=0;entryPerimeter=0;" target="cyGvPtCkyGEfTIRO07Su-35" value="creates">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1160" y="580" />
+              <mxPoint x="550" y="580" />
+              <mxPoint x="550" y="1050" />
+              <mxPoint x="770" y="1050" />
+              <mxPoint x="770" y="1080" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-81" edge="1" parent="1" source="cyGvPtCkyGEfTIRO07Su-17" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.1;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="cyGvPtCkyGEfTIRO07Su-39" value="creates">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1182" y="605" />
+              <mxPoint x="1030" y="605" />
+              <mxPoint x="1030" y="1070" />
+              <mxPoint x="1290" y="1070" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-82" edge="1" parent="1" source="cyGvPtCkyGEfTIRO07Su-17" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.935;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="cyGvPtCkyGEfTIRO07Su-51" value="creates">
+          <mxGeometry relative="1" x="0.0407" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1700" y="560" />
+              <mxPoint x="2550" y="560" />
+              <mxPoint x="2550" y="1060" />
+              <mxPoint x="2800" y="1060" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-83" edge="1" parent="1" source="cyGvPtCkyGEfTIRO07Su-39" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=1;exitY=0.375;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;" target="cyGvPtCkyGEfTIRO07Su-43" value="creates">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-84" edge="1" parent="1" source="cyGvPtCkyGEfTIRO07Su-39" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.71;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="cyGvPtCkyGEfTIRO07Su-47" value="creates">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1380" y="1450" />
+              <mxPoint x="2310" y="1450" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-85" edge="1" parent="1" source="cyGvPtCkyGEfTIRO07Su-43" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="cyGvPtCkyGEfTIRO07Su-27" value="uses">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-86" edge="1" parent="1" source="cyGvPtCkyGEfTIRO07Su-43" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.74;exitY=0;exitDx=0;exitDy=0;entryX=0.424;entryY=1.033;entryDx=0;entryDy=0;entryPerimeter=0;" target="cyGvPtCkyGEfTIRO07Su-30" value="uses">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1910" y="960" />
+              <mxPoint x="2280" y="960" />
+              <mxPoint x="2280" y="870" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-87" edge="1" parent="1" source="cyGvPtCkyGEfTIRO07Su-43" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.857;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="cyGvPtCkyGEfTIRO07Su-31" value="uses">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1960" y="980" />
+              <mxPoint x="2800" y="980" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-88" edge="1" parent="1" source="cyGvPtCkyGEfTIRO07Su-43" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.19;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="cyGvPtCkyGEfTIRO07Su-61" value="creates">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-89" edge="1" parent="1" source="cyGvPtCkyGEfTIRO07Su-43" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.905;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="cyGvPtCkyGEfTIRO07Su-63" value="uses">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1980" y="1480" />
+              <mxPoint x="2070" y="1480" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-90" edge="1" parent="1" source="cyGvPtCkyGEfTIRO07Su-43" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.98;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="cyGvPtCkyGEfTIRO07Su-65" value="uses">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2012" y="1520" />
+              <mxPoint x="2430" y="1520" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-91" edge="1" parent="1" source="cyGvPtCkyGEfTIRO07Su-35" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.1;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="cyGvPtCkyGEfTIRO07Su-55" value="uses">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="638" y="1470" />
+              <mxPoint x="530" y="1470" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-92" edge="1" parent="1" source="cyGvPtCkyGEfTIRO07Su-35" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.658;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="cyGvPtCkyGEfTIRO07Su-57" value="uses">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-93" edge="1" parent="1" source="cyGvPtCkyGEfTIRO07Su-39" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.38;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="cyGvPtCkyGEfTIRO07Su-59" value="uses">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-94" edge="1" parent="1" source="cyGvPtCkyGEfTIRO07Su-51" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="cyGvPtCkyGEfTIRO07Su-67" value="returns">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-95" edge="1" parent="1" source="cyGvPtCkyGEfTIRO07Su-51" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.85;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="cyGvPtCkyGEfTIRO07Su-69" value="uses">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2940" y="1475" />
+              <mxPoint x="3120" y="1475" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="cyGvPtCkyGEfTIRO07Su-96" edge="1" parent="1" source="cyGvPtCkyGEfTIRO07Su-51" style="rounded=0;html=1;jettySize=auto;endArrow=open;dashed=1;fontSize=11;exitX=0.95;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="cyGvPtCkyGEfTIRO07Su-71" value="uses">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2980" y="1530" />
+              <mxPoint x="3420" y="1530" />
+            </Array>
           </mxGeometry>
         </mxCell>
       </root>
