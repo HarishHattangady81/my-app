@@ -6,49 +6,31 @@ on:
     types: [openproject_deployment_approved]
 
 jobs:
-  production_release:
-    name: Execute Code Release
+  test_connection_and_gate:
+    name: Verify Approval Gate and SSH Connection
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout Repository Source Code
-        uses: actions/checkout@v4
-
       - name: Announce Release Initialization
         run: |
           echo "=========================================================="
-          echo "🔒 RELEASE UNLOCKED BY CHANGE ADVISORY BOARD APPROVAL"
+          echo "🔒 RELEASE UNLOCKED BY OPENPROJECT CAB APPROVAL"
           echo "🎫 OpenProject Ticket ID: ${{ github.event.client_payload.ticket_id }}"
           echo "📝 Ticket Summary: ${{ github.event.client_payload.summary }}"
           echo "=========================================================="
 
-      # Connects securely using your stored secret parameters
-      - name: Configure Secure SSH Key Connection
+      - name: Test Secure SSH Connection
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.DEPLOY_HOST }}
           username: ${{ secrets.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           port: 22
-          script_stop: true # Immediately halt the pipeline if any terminal command returns an error
           script: |
-            echo "Successfully connected to target host server!"
-            
-            # 1. Navigate to your application's operating directory on the server
-            cd /opt/my-production-app
-
-            # 2. Fetch the latest code changes from your Git repository branch
-            echo "Pulling production branch additions..."
-            git fetch --all
-            git reset --hard origin/main
-
-            # 3. Pull updated container builds and restart services gracefully
-            echo "Rebuilding and bouncing container microservices..."
-            docker compose pull
-            docker compose up -d --remove-orphans
-
-            # 4. Clean up legacy system cache/images to save drive space
-            echo "Pruning dangling docker image caches..."
-            docker image prune -f
-
-            echo "🚀 Deployment successfully executed on target host server!"
+            echo "=========================================================="
+            echo "✅ SUCCESS: GitHub connected to your server perfectly!"
+            echo "📊 Target Server Stats Below:"
+            echo "----------------------------------------------------------"
+            uname -a
+            uptime
+            echo "=========================================================="
