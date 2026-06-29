@@ -18,19 +18,3 @@ jobs:
           echo "🎫 OpenProject Ticket ID: ${{ github.event.client_payload.ticket_id }}"
           echo "📝 Ticket Summary: ${{ github.event.client_payload.summary }}"
           echo "=========================================================="
-
-      - name: Test Secure SSH Connection
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.DEPLOY_HOST }}
-          username: ${{ secrets.DEPLOY_USER }}
-          key: ${{ secrets.DEPLOY_SSH_KEY }}
-          port: 22
-          script: |
-            echo "=========================================================="
-            echo "✅ SUCCESS: GitHub connected to your server perfectly!"
-            echo "📊 Target Server Stats Below:"
-            echo "----------------------------------------------------------"
-            uname -a
-            uptime
-            echo "=========================================================="
